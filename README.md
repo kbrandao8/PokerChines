@@ -10,16 +10,16 @@ Foi construído com base nas regras do
 ### As cartas: ##
 
 O Poker Chinês utiliza um baralho padrão para o jogo, o que totaliza 52 cartas. As cartas podem ser jogadas de três formas diferentes:
-> * Unitária;
-> * Dupla (Duas cartas com o mesmo número e naipes diferentes);
-> * Trinca (Trinca cartas com o mesmo número e naipes diferentes);
-> * Um "Jogo de cinco" (Cinco cartas combinadas que equivalem às mãos do Poker convencional):
->> * Royal Flush;
->> * Straight Flush;
->> * Quadra;
->> * Full House;
->> * Flush;
->> * Sequência.
+ * Unitária;
+* Dupla (Duas cartas com o mesmo número e naipes diferentes);
+* Trinca (Trinca cartas com o mesmo número e naipes diferentes);
+* Um "Jogo de cinco" (Cinco cartas combinadas que equivalem às mãos do Poker convencional):
+> * Royal Flush;
+> * Straight Flush;
+> * Quadra;
+> * Full House;
+> * Flush;
+> * Sequência.
 
 
 ### Príncipios básicos: ###
