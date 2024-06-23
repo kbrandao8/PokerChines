@@ -4,7 +4,8 @@
 #include <set>
 
 // Helper functions
-bool isStraight(const std:: vector<Card>& hand) {
+bool isStraight(const std::vector<Card>& hand) {
+    if (hand.size() != 5) return false;
     std::vector<int> ranks;
     for (const auto& card : hand) {
         ranks.push_back(card.getRank());
@@ -19,6 +20,7 @@ bool isStraight(const std:: vector<Card>& hand) {
 }
 
 bool isFlush(const std::vector<Card>& hand) {
+    if (hand.size() != 5) return false;
     Suit suit = hand[0].getSuit();
     for (const auto& card : hand) {
         if (card.getSuit() != suit) {
