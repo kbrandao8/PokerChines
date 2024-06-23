@@ -1,23 +1,20 @@
-#include "deck.h"
-#include "player.h"
+#include "pokerchines.h"
 #include <iostream>
+#include <vector>
 
 int main() {
-    Deck deck;
-    Player player1("Alice");
-    Player player2("Bob");
+    std::vector<std::string> playerNames = {"Alice", "Bob", "Charlie", "Dave"};
+    pokerChines pokerChines(playerNames);
 
-    for (int i = 0; i < 5; ++i) {
-        player1.receiveCard(deck.dealCard());
-        player2.receiveCard(deck.dealCard());
-    }
-
-    player1.showHand();
-    player2.showHand();
+    char continuePlaying;
+    do {
+        pokerChines.playRound();
+        std::cout << "Play another round? (y/n): ";
+        std::cin >> continuePlaying;
+    } while (continuePlaying == 'y');
 
     return 0;
 }
-
 
 
 
