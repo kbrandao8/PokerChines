@@ -1,9 +1,37 @@
+#include "deck.h"
+#include "player.h"
 #include <iostream>
+
+int main() {
+    Deck deck;
+    Player player1("Alice");
+    Player player2("Bob");
+
+    for (int i = 0; i < 5; ++i) {
+        player1.receiveCard(deck.dealCard());
+        player2.receiveCard(deck.dealCard());
+    }
+
+    player1.showHand();
+    player2.showHand();
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+/*#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <random>
 #include <ctime>
 #include <map>
+
 
 using namespace std;
 
@@ -171,3 +199,4 @@ int main() {
 
     return 0;
 }
+*/

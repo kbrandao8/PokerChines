@@ -1,34 +1,42 @@
-#ifndef CARD_H_INCLUDED
-#define CARD_H_INCLUDED
+#ifndef CARD_H
+#define CARD_H
 
 #include <string>
-#include <iostream> // Para std::cout
-#include <iomanip>  // Para std::setw
 
-/**
- * @file card.h
- * Declaração da classe Card e seus métodos.
- */
-
-class Card {
-private:
-    std::string suit;   // naipe
-    int value;          // valor numérico da carta
-    std::string name;   // nome da carta
-    char number;        // símbolo numérico (A, 2, 3, ..., Q, K)
-    char symbol;        // símbolo do naipe (p, e, o, c)
-
-public:
-    Card(int v, int s); // Construtor
-    std::string getSuit();
-    int getValue();
-    std::string getName();
-    std::string getFullName();
-    void print();
-    bool operator>(const Card& c) const;
-    bool operator==(const Card& c) const;
-    char getNumber();
-    char getSymbol();
+enum Suit {
+    HEARTS,
+    DIAMONDS,
+    CLUBS,
+    SPADES
 };
 
-#endif // CARD_H_INCLUDED
+enum Rank {
+    TWO,
+    THREE,
+    FOUR,
+    FIVE,
+    SIX,
+    SEVEN,
+    EIGHT,
+    NINE,
+    TEN,
+    JACK,
+    QUEEN,
+    KING,
+    ACE
+};
+
+class Card {
+public:
+    Card(Suit suit, Rank rank);
+    std::string toString() const;
+
+    Suit getSuit() const;
+    Rank getRank() const;
+
+private:
+    Suit suit;
+    Rank rank;
+};
+
+#endif // CARD_H
