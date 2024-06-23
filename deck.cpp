@@ -1,24 +1,20 @@
 #include "deck.h"
+#include <algorithm>
+#include <random>
 #include <ctime>
-#include <cstdlib>
+#include <stdexcept> // out_of_range
 
-Deck::Deck() {
-    initializeDeck();
+Deck::Deck() : currentCardIndex(0) {
+    for (int suit = HEARTS; suit <= SPADES; ++suit) {
+        for (int rank = TWO; rank <= ACE; ++rank) {
+            cards.emplace_back(static_cast<Rank>(rank), static_cast<Suit>(suit));
+        }
+    }
     shuffle();
 }
 
-void Deck::initializeDeck() {
-    cards.clear();
-    for (int suit = HEARTS; suit <= SPADES; ++suit) {
-        for (int rank = TWO; rank <= ACE; ++rank) {
-            cards.push_back(Card(static_cast<Suit>(suit), static_cast<Rank>(rank)));
-        }
-    }
-    currentCardIndex = 0;
-}
-
 void Deck::shuffle() {
-    std::srand(std::time(0));
+    std::srand(static_cast<unsigned int>(std::time(0)));
     std::random_shuffle(cards.begin(), cards.end());
     currentCardIndex = 0;
 }
@@ -32,9 +28,4 @@ Card Deck::dealCard() {
 
 bool Deck::isEmpty() const {
     return currentCardIndex >= cards.size();
-}
-
-void Deck::reset() {
-    initializeDeck();
-    shuffle();
 }
