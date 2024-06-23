@@ -7,7 +7,7 @@
 Deck::Deck() : currentCardIndex(0) {
     for (int suit = HEARTS; suit <= SPADES; ++suit) {
         for (int rank = TWO; rank <= ACE; ++rank) {
-            cards.emplace_back(static_cast<Rank>(rank), static_cast<Suit>(suit));
+            cards.emplace_back(static_cast<Suit>(suit), static_cast<Rank>(rank));
         }
     }
     shuffle();
