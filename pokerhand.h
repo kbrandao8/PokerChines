@@ -1,5 +1,5 @@
-#ifndef POKERHAND_HPP
-#define POKERHAND_HPP
+#ifndef POKERHAND_H
+#define POKERHAND_H
 
 #include "card.h"
 #include <vector>
@@ -83,5 +83,5 @@ public:
     int getRank() const override;
 };
 
-#endif // POKERHAND_HPP
+#endif // POKERHAND_H
 
