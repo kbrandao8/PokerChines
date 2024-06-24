@@ -118,9 +118,9 @@ O Poker Chinês utiliza um baralho padrão para o jogo, o que totaliza 52 cartas
 
 **Critérios de Aceitação:**
 
-1. O jogador não pode jogar uma carta, ou conjunto de cartas,  que não correspondem as regras da “mão da rodada”.
-2. O jogador não pode jogar uma carta, ou conjunto de cartas, que não seja maior que a do jogador anterior.
-3. Uma mensagem deve ser exibida informando o jogador caso a sua jogada seja proibida.
+> 1. O jogador não pode jogar uma carta, ou conjunto de cartas,  que não correspondem as regras da “mão da rodada”.
+> 2. O jogador não pode jogar uma carta, ou conjunto de cartas, que não seja maior que a do jogador anterior.
+> 3. Uma mensagem deve ser exibida informando o jogador caso a sua jogada seja proibida.
 
 ### User Story 07:
 
@@ -128,10 +128,10 @@ O Poker Chinês utiliza um baralho padrão para o jogo, o que totaliza 52 cartas
 
 **Critérios de Aceitação:**
 
-1. O primeiro jogador não pode pular a rodada.
-2. O jogador que pular a rodada só poderá jogar novamente na próxima rodada.
-3. O jogador pode pular a rodada mesmo tento cartas possíveis de serem jogadas.
-4. Quando sobrar apenas um jogador ele ganha a rodada e inicia a próxima.
+> 1. O primeiro jogador não pode pular a rodada.
+> 2. O jogador que pular a rodada só poderá jogar novamente na próxima rodada.
+> 3. O jogador pode pular a rodada mesmo tento cartas possíveis de serem jogadas.
+> 4. Quando sobrar apenas um jogador ele ganha a rodada e inicia a próxima.
 
 ### User Story 08:
 
@@ -139,8 +139,8 @@ O Poker Chinês utiliza um baralho padrão para o jogo, o que totaliza 52 cartas
 
 **Critérios de Aceitação:**
 
-1. As mãos dos jogadores devem ser limpas após cada partida.
-2. As novas cartas devem ser distribuídas corretamente na próxima rodada.
+> 1. As mãos dos jogadores devem ser limpas após cada partida.
+> 2. As novas cartas devem ser distribuídas corretamente na próxima rodada.
 
 ### User Story 09:
 
@@ -148,11 +148,11 @@ O Poker Chinês utiliza um baralho padrão para o jogo, o que totaliza 52 cartas
 
 **Critérios de Aceitação:**
 
-1. Os pontos devem ser atualizados corretamente após cada partida.
-2. O sistema deve manter um registro da pontuação total de cada jogador.
-3. As pontuações de todos os jogadores devem ser exibidas claramente após cada partida.
-4. A pontuação acumulada em cada partida é igual ao número de cartas restantes nas mãos dos jogadores.
-5. Uma partida termina após a rodada em que um ou mais jogadores não tiverem mais cartas.
+> 1. Os pontos devem ser atualizados corretamente após cada partida.
+> 2. O sistema deve manter um registro da pontuação total de cada jogador.
+> 3. As pontuações de todos os jogadores devem ser exibidas claramente após cada partida.
+> 4. A pontuação acumulada em cada partida é igual ao número de cartas restantes nas mãos dos jogadores.
+> 5. Uma partida termina após a rodada em que um ou mais jogadores não tiverem mais cartas.
 
 ### User Story 10:
 
@@ -160,11 +160,11 @@ O Poker Chinês utiliza um baralho padrão para o jogo, o que totaliza 52 cartas
 
 **Critérios de Aceitação:**
 
-1. Deve haver uma opção para encerrar o jogo após cada partida.
-2. Ao encerrar o jogo, as pontuações finais devem ser exibidas e o jogador com menor pontuação declarado vencedor.
-3. O sistema deve confirmar a intenção do jogador antes de encerrar o jogo.
-4. Para o caso de empate, o sistema deve exibir todos os “vencedores”.
-5. Após uma partida, se um dos jogadores termina com uma pontuação final igual ou maior a 25, o jogo acaba.
+> 1. Deve haver uma opção para encerrar o jogo após cada partida.
+> 2. Ao encerrar o jogo, as pontuações finais devem ser exibidas e o jogador com menor pontuação declarado vencedor.
+> 3. O sistema deve confirmar a intenção do jogador antes de encerrar o jogo.
+> 4. Para o caso de empate, o sistema deve exibir todos os “vencedores”.
+> 5. Após uma partida, se um dos jogadores termina com uma pontuação final igual ou maior a 25, o jogo acaba.
 
 
 
@@ -203,61 +203,88 @@ O Poker Chinês utiliza um baralho padrão para o jogo, o que totaliza 52 cartas
 * bool isEmpty() const - Verifica se o baralho está vazio.
 * void reset() - Reseta o baralho para o estado inicial (todas as cartas presentes e embaralhadas).
 
+#### GameRound
+
+**Atributos:**
+
+* Card handOfRound - Armazena a carta da "mão da rodada".
+
+**Métodos:**
+
+* GameRound() - Construtor que inicializa a "mão da rodada" com uma carta padrão (2 de Copas).
+* void setHandOfRound(const Card& card) - Define a carta da "mão da rodada".
+* Card getHandOfRound() const - Retorna a carta da "mão da rodada".
+* bool isValidMove(const std::vector<Card>& cards) const - Verifica se um movimento é válido com base na "mão da rodada".
+
+#### Player
+
+**Atributos:**
+
+* std::string name - Nome do jogador.
+* std::vector<Card> hand - Vetor que armazena a mão de cartas do jogador.
+
+**Métodos:**
+
+* Player(const std::string& name) - Construtor que inicializa o jogador com um nome.
+* std::string getName() const - Retorna o nome do jogador.
+* void setName(const std::string& playerName) - Define o nome do jogador.
+* std::vector<Card> getHand() const - Retorna a mão de cartas do jogador.
+* void setHand(const std::vector<Card>& cards) - Define a mão de cartas do jogador.
+* void addToHand(const Card& card) - Adiciona uma carta à mão do jogador.
+* void removeFromHand(const Card& card) - Remove uma carta da mão do jogador.
+* void clearHand() - Limpa a mão do jogador.
+* std::vector<Card> playCards() - Faz o jogador jogar as cartas da mão.
+* bool hasCards() const - Verifica se o jogador ainda tem cartas na mão.
 
 
-Lista da Classe GameRound
-Atributos:
+#### pokerChines
 
-Card handOfRound - Armazena a carta da "mão da rodada".
-Métodos:
+**Atributos:**
 
-GameRound() - Construtor que inicializa a "mão da rodada" com uma carta padrão (2 de Copas).
-void setHandOfRound(const Card& card) - Define a carta da "mão da rodada".
-Card getHandOfRound() const - Retorna a carta da "mão da rodada".
-bool isValidMove(const std::vector<Card>& cards) const - Verifica se um movimento é válido com base na "mão da rodada".
+* std::vector<Player> players - Vetor que armazena os jogadores.
+* Deck deck - Baralho de cartas.
+* GameRound currentGameRound - Rodada atual do jogo.
+* int currentRoundStarter - Índice do jogador que começa a rodada.
+* int winnerIndex - Índice do jogador vencedor da rodada.
+* int currentRound - Número da rodada atual.
+* std::vector<int> scores - Vetor que armazena as pontuações dos jogadores.
 
-Lista da Classe Player
-Atributos:
+**Métodos:**
 
-std::string name - Nome do jogador.
-std::vector<Card> hand - Vetor que armazena a mão de cartas do jogador.
-Métodos:
-
-Player(const std::string& name) - Construtor que inicializa o jogador com um nome.
-std::string getName() const - Retorna o nome do jogador.
-void setName(const std::string& playerName) - Define o nome do jogador.
-std::vector<Card> getHand() const - Retorna a mão de cartas do jogador.
-void setHand(const std::vector<Card>& cards) - Define a mão de cartas do jogador.
-void addToHand(const Card& card) - Adiciona uma carta à mão do jogador.
-void removeFromHand(const Card& card) - Remove uma carta da mão do jogador.
-void clearHand() - Limpa a mão do jogador.
-std::vector<Card> playCards() - Faz o jogador jogar as cartas da mão.
-bool hasCards() const - Verifica se o jogador ainda tem cartas na mão.
+* pokerChines(const std::vector<std::string>& playerNames) - Construtor que inicializa o jogo com os nomes dos jogadores.
+* void playGame() - Inicia o jogo.
+* void dealCards() - Distribui as cartas para os jogadores.
+* void determineRoundStarter() - Determina quem começa a rodada.
+* void determineHandOfRound() - Determina a "mão da rodada".
+* void playRound() - Joga uma rodada.
+* bool isValidMove(const std::vector<Card>& cards) - Verifica se uma jogada é válida.
+* bool promptEndGame() - Pergunta se o jogo deve terminar.
+* void displayScores() - Exibe as pontuações dos jogadores.
 
 
+#### PokerHand
+
+**Métodos**
+
+* virtual ~PokerHand() = default;
+* virtual bool matches(const std::vector<Card>& hand) const = 0;
+* virtual std::string getName() const = 0;
+* virtual int getRank() const = 0;
+
+#### RoyalFlush
+
+**Métodos**
+
+* bool matches(const std::vector<Card>& hand) const override;
+* std::string getName() const override;
+* int getRank() const override;
+
+#### Classe StraightFlush
+
+**Métodos**
+
+* `bool matches(const
 
 
 
 
-
-Lista da Classe pokerChines
-Atributos:
-
-std::vector<Player> players - Vetor que armazena os jogadores.
-Deck deck - Baralho de cartas.
-GameRound currentGameRound - Rodada atual do jogo.
-int currentRoundStarter - Índice do jogador que começa a rodada.
-int winnerIndex - Índice do jogador vencedor da rodada.
-int currentRound - Número da rodada atual.
-std::vector<int> scores - Vetor que armazena as pontuações dos jogadores.
-Métodos:
-
-pokerChines(const std::vector<std::string>& playerNames) - Construtor que inicializa o jogo com os nomes dos jogadores.
-void playGame() - Inicia o jogo.
-void dealCards() - Distribui as cartas para os jogadores.
-void determineRoundStarter() - Determina quem começa a rodada.
-void determineHandOfRound() - Determina a "mão da rodada".
-void playRound() - Joga uma rodada.
-bool isValidMove(const std::vector<Card>& cards) - Verifica se uma jogada é válida.
-bool promptEndGame() - Pergunta se o jogo deve terminar.
-void displayScores() - Exibe as pontuações dos jogadores.
