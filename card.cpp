@@ -17,3 +17,7 @@ Rank Card::getRank() const {
 Suit Card::getSuit() const {
     return suit;
 }
+bool Card::operator ==(const Card& other) const {
+
+    return suit == other.suit && rank == other.rank;
+}

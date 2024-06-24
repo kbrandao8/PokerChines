@@ -41,7 +41,7 @@ std::map<int, int> getCounts(const std::vector<Card>& hand) {
 // RoyalFlush implementation
 bool RoyalFlush::matches(const std::vector<Card>& hand) const {
     if (!isFlush(hand)) return false;
-    std::set<int> royalRanks = {TEN, JACK, QUEEN, KING, ACE};
+    std::set<int> royalRanks = {10, 11, 12, 13, 14};
     for (const auto& card : hand) {
         if (royalRanks.find(card.getRank()) == royalRanks.end()) {
             return false;

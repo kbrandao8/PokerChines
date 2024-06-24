@@ -15,6 +15,7 @@ public:
 
     Rank getRank() const;
     Suit getSuit() const;
+    bool operator==(const Card& other) const;
 
 private:
     Suit suit;

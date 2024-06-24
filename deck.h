@@ -3,8 +3,9 @@
 
 #include "card.h"
 #include <vector>
-#include <algorithm>
-#include <random>
+//#include <algorithm>
+//#include <random>
+
 
 class Deck {
 public:
@@ -16,8 +17,8 @@ public:
 
 private:
     std::vector<Card> cards;
-    int currentCardIndex;
-    void initializeDeck();
+    size_t currentCardIndex;
+
 };
 
 #endif // DECK_H
