@@ -3,14 +3,15 @@
 
 #include "card.h"
 #include <vector>
+#include <string>
 
 class Player {
 public:
     Player(const std::string& name);
     void addCard(const Card& card);
-    void clearHand();
-    std::vector<Card> getHand() const;
-    std::string getName() const;
+    void showHand() const;
+    bool hasCard(const Card& card) const;
+    const std::string& getName() const;
 
 private:
     std::string name;

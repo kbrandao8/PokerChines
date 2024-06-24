@@ -3,23 +3,27 @@
 
 #include "player.h"
 #include "deck.h"
-#include "pokerhand.h"
+//#include "pokerhand.h"
 #include <vector>
+#include <string>
 
 class pokerChines {
 public:
-    pokerChines(const std::vector<std::string>& playerNames);
-    void playRound();
-    void showHands() const;
-    void determineWinner();
+    pokerChines();
+    void start();
 
 private:
-    std::vector<Player> players;
-    Deck deck;
-    std::vector<PokerHand*> pokerHands;
-
+    void setupPlayers();
     void dealCards();
-    PokerHand* determineHand(const std::vector<Card>& hand) const;
+    void playRound();
+    void displayHands();
+    void determineRoundStarter();
+    void determineHandOfRound();
+
+    Deck deck;
+    std::vector<Player> players;
+    int currentRoundStarter;
+    std::string handOfRound;
 };
 
 #endif // POKERCHINES_H
