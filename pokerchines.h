@@ -9,21 +9,24 @@
 
 class pokerChines {
 public:
-    pokerChines();
-    void start();
+    pokerChines(const std::vector<std::string>& playerNames);
+    void playRound();
+    void playGame();
 
 private:
-    void setupPlayers();
+    void setupPlayers(const std::vector<std::string>& playerNames);
     void dealCards();
-    void playRound();
-    void displayHands();
     void determineRoundStarter();
     void determineHandOfRound();
+    bool isValidMove(const std::vector<Card>& cards);
+    void displayScores();
+    bool promptEndGame();
 
     Deck deck;
     std::vector<Player> players;
     int currentRoundStarter;
     std::string handOfRound;
+    std::vector<int> scores;
 };
 
 #endif // POKERCHINES_H

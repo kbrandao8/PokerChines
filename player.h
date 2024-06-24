@@ -8,14 +8,19 @@
 class Player {
 public:
     Player(const std::string& name);
-    void addCard(const Card& card);
-    void showHand() const;
-    bool hasCard(const Card& card) const;
     const std::string& getName() const;
+    void addCard(const Card& card);
+    bool hasCard(const Card& card) const;
+    void showHand() const;
+    const std::vector<Card>& getHand() const;
+    void clearHand();
+    bool isSkipping() const;
+    void setSkipping(bool skip);
 
 private:
     std::string name;
     std::vector<Card> hand;
+    bool skipping;
 };
 
 #endif // PLAYER_H

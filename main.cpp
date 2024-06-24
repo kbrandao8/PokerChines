@@ -1,18 +1,23 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "card.h"
-#include "deck.h"
-#include "pokerhand.h"
-#include "player.h"
 #include "pokerchines.h"
 
 int main() {
-    pokerChines pokerChines;
-    pokerChines.start ();
+    std::vector<std::string> playerNames;
+
+    for (int i = 0; i < 4; ++i) {
+        std::string name;
+        std::cout << "Enter name for player " << i + 1 << ": ";
+        std::cin >> name;
+        playerNames.push_back(name);
+    }
+
+    pokerChines game(playerNames);
+    game.playGame();
+
     return 0;
 }
-
 
 
 
