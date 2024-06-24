@@ -1,38 +1,57 @@
 #include "player.h"
-#include <iostream>
+#include <algorithm>
 
-Player::Player(const std::string& name) : name(name), skipping(false) {}
-const std::string& Player::getName() const {
+// Implementação do construtor
+Player::Player(const std::string& playerName)
+    : name(playerName) {}
+
+// Implementação do método getName
+std::string Player::getName() const {
     return name;
 }
-void Player::addCard(const Card& card) {
-    hand.push_back(card);
-    }
-bool Player::hasCard(const Card& card) const {
-    for (const auto& c : hand) {
-        if (c.getSuit() == card.getSuit() && c.getRank() == card.getRank()) {
-            return true;
-        }
-    }
-    return false;
+
+// Implementação do método setName
+void Player::setName(const std::string& playerName) {
+    name = playerName;
 }
-void Player::showHand() const {
-    for (const auto& card : hand) {
-        std::cout << card.toString() << " ";
-        }
-    std::cout << "\n";
-}
-const std::vector<Card>& Player::getHand() const {
+
+// Implementação do método getHand
+std::vector<Card> Player::getHand() const {
     return hand;
 }
+
+// Implementação do método setHand
+void Player::setHand(const std::vector<Card>& cards) {
+    hand = cards;
+}
+
+// Implementação do método addToHand
+void Player::addToHand(const Card& card) {
+    hand.push_back(card);
+}
+
+// Implementação do método removeFromHand
+void Player::removeFromHand(const Card& card) {
+    auto it = std::find(hand.begin(), hand.end(), card);
+    if (it != hand.end()) {
+        hand.erase(it);
+    }
+}
+
+// Implementação do método clearHand
 void Player::clearHand() {
     hand.clear();
 }
 
-bool Player::isSkipping() const {
-    return skipping;
+// Implementação do método playCards
+std::vector<Card> Player::playCards() {
+    // Implementação de exemplo: o jogador joga todas as cartas da mão
+    std::vector<Card> cardsPlayed = hand;
+    clearHand();
+    return cardsPlayed;
 }
 
-void Player::setSkipping(bool skip) {
-    skipping = skip;
+// Implementação do método hasCards
+bool Player::hasCards() const {
+    return !hand.empty();
 }

@@ -3,22 +3,31 @@
 
 #include "card.h"
 #include <vector>
-//#include <algorithm>
-//#include <random>
 
-
+// Declaração da classe Deck
 class Deck {
 public:
+    // Construtor que inicializa o baralho
     Deck();
+
+    // Método que embaralha as cartas
     void shuffle();
+
+    // Método que distribui uma carta do topo do baralho
     Card dealCard();
+
+    // Método que verifica se o baralho está vazio
     bool isEmpty() const;
+
+    // Método que reseta o baralho para o estado inicial
     void reset();
 
 private:
+    // Vetor que armazena as cartas do baralho
     std::vector<Card> cards;
-    size_t currentCardIndex;
 
+    // Índice da carta atual a ser distribuída
+    size_t currentCardIndex;
 };
 
 #endif // DECK_H

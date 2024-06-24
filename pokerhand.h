@@ -5,14 +5,16 @@
 #include <vector>
 #include <string>
 
+// Declaração da classe base PokerHand
 class PokerHand {
 public:
     virtual ~PokerHand() = default;
-    virtual bool matches(const std::vector<Card>& hand) const = 0;
-    virtual std::string getName() const = 0;
-    virtual int getRank() const = 0;
+    virtual bool matches(const std::vector<Card>& hand) const = 0;  // Verifica se a mão corresponde a este tipo de jogada
+    virtual std::string getName() const = 0;  // Retorna o nome da jogada
+    virtual int getRank() const = 0;  // Retorna o rank da jogada
 };
 
+// Declarações das classes derivadas para cada tipo de jogada
 class RoyalFlush : public PokerHand {
 public:
     bool matches(const std::vector<Card>& hand) const override;
@@ -84,4 +86,3 @@ public:
 };
 
 #endif // POKERHAND_H
-

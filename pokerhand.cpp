@@ -17,15 +17,15 @@ void pokerChines::setupPlayers(const std::vector<std::string>& playerNames) {
 }
 
 void pokerChines::dealCards() {
+    // Shuffle deck
     deck.shuffle();
-    for (int i = 0; i < 13; ++i) {
-        for (auto& player : players) {
-            player.addCard(deck.dealCard());
+
+    // Deal cards to players
+    for (size_t i = 0; i < players.size(); ++i) {
+        for (int j = 0; j < 13; ++j) {
+            Card card = deck.draw(); // Assume que draw é o método para retirar uma carta do baralho
+            players[i].addToHand(card); // Assume que addToHand é o método para adicionar uma carta à mão do jogador
         }
-    }
-    for (const auto& player : players) {
-        std::cout << player.getName() << "'s hand:\n";
-        player.showHand();
     }
 }
 

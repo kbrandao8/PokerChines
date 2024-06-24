@@ -10,7 +10,7 @@ Foi construído com base nas regras do
 ### As cartas: ##
 
 O Poker Chinês utiliza um baralho padrão para o jogo, o que totaliza 52 cartas. As cartas podem ser jogadas de três formas diferentes:
- * Unitária;
+* Unitária;
 * Dupla (Duas cartas com o mesmo número e naipes diferentes);
 * Trinca (Trinca cartas com o mesmo número e naipes diferentes);
 * Um "Jogo de cinco" (Cinco cartas combinadas que equivalem às mãos do Poker convencional):
@@ -21,113 +21,37 @@ O Poker Chinês utiliza um baralho padrão para o jogo, o que totaliza 52 cartas
 > * Flush;
 > * Sequência.
 
-
-### Príncipios básicos: ###
+### Princípios básicos: ###
 #### Partida: ####
+* O jogo de poker chinês é jogado pquatro jogadores.
+* Cada jogador recebe 13 cartas de um baralho padrão de 52 cartas.
+* A partida se inicia com a jogada da pessoa que saiu com a carta 3 de ouros.
+* O jogador que inicia a rodada, pode jogar uma carta individual, uma dupla, uma trinca, ou um jogo de cinco cartas respeitando as mãos do poker, sendo os demais obrigados a seguir essa mão até o fim da rodada.
 
 #### Jogo: ####
-
+* O objetivo do jogo é descartar o maior número de cartas possíveis antes dos demais jogadores.
+* No início de cada rodada é determinada qual será a regra da rodada (trinca, dupla...)
+* A rodada finaliza quando um ou mais jogares ficam sem cartas.
 #### Contagem de pontos: ####
+* O Número de cartas restantes na mão de cada jogador após o fim da rodada é somado na sua pontuação final
+* O jogo termina quando um jogados chega aos 25 pontos ou mais.
+* O jogador que tiver menos ponto é o vencedor so jogo.
 
-#### Duplicar: ####
+# Modelagem
+### Requisitos
+#### Requisitos Funcionais
+> 1. Personalização de Nomes dos Jogadores
+> 2. Embaralhamento e Distribuição de Cartas
+> 3. Visualização das Cartas na Mão do Jogador
+> 4. Determinação do Primeiro Jogador
+> 5. Mão da Rodada e Validade das Jogadas
+> 6. Pontuação e Acumulação de Pontos
+> 7. Finalização e Encerramento do Jogo
 
-#### Triplicar ####
+#### Requisitos Não Funcionais
+> 1. Usabilidade
+> 2. Manutenção
 
-## Sobre o código: ##
-
-### Documentação: ###
-
-### Como compilar: ##
-
-### Classes criadas: ###
-
-#### Card:
-Tad criado para armazenar os dados que compôem uma carta sendo eles seu valor e seu naipe.
-##### Funções:
-###### card:
-É o construtor, recebe um valor e um naipe como parãmetros e cria um card usando-os.
-Recebe: Int, String
-Retorna: Nada
-
-###### Get_suit:
-Retorna o naipe da carta.
-
-Recebe: Nada
-Retorna: String
-
-###### Get_valor:
-Retorna o valor da carta
-
-Recebe: Nada
-Retorna: Int
-
-###### get_nome_completro:
-Retorna qual a carta em questão no formato:"nome" de "naipe".
-
-Recebe: Nada
-Retorna: String
-
-###### get_nome:
-Retorna o conteúdo da variável nome
-
-Recebe: Nada
-Retorna: String 
-
-###### get_numero:
-Retorna o valor guardado na variável número.
-
-Recebe: Nada
-Retorna: Char
-######  get_naipe:
-Retorna o valor na variável naipe:
-
-Recebe: Nada
-Retorna: Char
-###### operator ==:
-Retorna true se as cartas forem de pontuação equivalente. Utiliza o operator>.
-
-Recebe: Const Card&
-Retorna: bool
-
-##### operator >:
-Retorna verdadeiro se a carta em questão for maior em pontuação que a carta passada como parâmetro.
-
-Recebe: Const Card&
-Retorna: bool
-
-
-
-#### Deck:
-Armazena um vector de cards que compôem o baralho da partida.
-##### Funções:
-###### myrandom:
-Define a distribuição probabilística para o embaralhamento do vector que contém as cartas.
-
-Recebe: Int;
-
-Retorna: Int;
-
-###### create_hand:
-Pega os doze primeiros cards do vector Deck e os distribui em quatro vectors para servirem de mãos para os players.
-
-Recebe: Vector<card>
-  
-Retorna: Nada
-###### shuffle:
-Embaralha o vector de cards em função da distribuição representada por myrandom. Logo após chama a função create_hand.
-
-Recebe: Vector<card>
-  
-Retorna: Nada
-  
-###### Deck:
-É o construtor do deck que gera um vector de cards em ordem e logo depois utiliza a função shuflle para embaralha-las.
-
-Recebe: Nada
-
-Retorna: Nada
-
-# User Stories:
 
 ### User Story 01:
 
@@ -241,3 +165,99 @@ Retorna: Nada
 3. O sistema deve confirmar a intenção do jogador antes de encerrar o jogo.
 4. Para o caso de empate, o sistema deve exibir todos os “vencedores”.
 5. Após uma partida, se um dos jogadores termina com uma pontuação final igual ou maior a 25, o jogo acaba.
+
+
+
+
+# Sobre o código:
+
+### Documentação: ###
+
+### Como compilar: ##
+
+### Classes criadas: ###
+
+#### Card:
+**Atributos:**
+* Suit suit - Armazena o naipe da carta (Copas, Ouros, Paus, Espadas).
+* Rank rank - Armazena o valor da carta (2, 3, 4, ..., 10, Valete, Rainha, Rei, Ás).
+
+**Métodos:**
+* Card(Suit suit, Rank rank) - Construtor que inicializa uma carta com um naipe e um valor específicos.
+* Suit getSuit() const - Retorna o naipe da carta.
+* Rank getRank() const - Retorna o valor da carta.
+* std::string toString() const - Retorna uma representação em string da carta, no formato "Valor de Naipe".
+
+#### Deck:
+
+**Atributos:**
+
+* std::vector<Card> cards - Vetor que armazena as cartas do baralho.
+* size_t currentCardIndex - Índice da carta atual a ser distribuída.
+
+**Métodos:**
+
+* Deck() - Construtor que inicializa o baralho com todas as cartas e as embaralha.
+* void shuffle() - Embaralha as cartas do baralho.
+* Card dealCard() - Distribui uma carta do topo do baralho e a remove do vetor.
+* bool isEmpty() const - Verifica se o baralho está vazio.
+* void reset() - Reseta o baralho para o estado inicial (todas as cartas presentes e embaralhadas).
+
+
+
+Lista da Classe GameRound
+Atributos:
+
+Card handOfRound - Armazena a carta da "mão da rodada".
+Métodos:
+
+GameRound() - Construtor que inicializa a "mão da rodada" com uma carta padrão (2 de Copas).
+void setHandOfRound(const Card& card) - Define a carta da "mão da rodada".
+Card getHandOfRound() const - Retorna a carta da "mão da rodada".
+bool isValidMove(const std::vector<Card>& cards) const - Verifica se um movimento é válido com base na "mão da rodada".
+
+Lista da Classe Player
+Atributos:
+
+std::string name - Nome do jogador.
+std::vector<Card> hand - Vetor que armazena a mão de cartas do jogador.
+Métodos:
+
+Player(const std::string& name) - Construtor que inicializa o jogador com um nome.
+std::string getName() const - Retorna o nome do jogador.
+void setName(const std::string& playerName) - Define o nome do jogador.
+std::vector<Card> getHand() const - Retorna a mão de cartas do jogador.
+void setHand(const std::vector<Card>& cards) - Define a mão de cartas do jogador.
+void addToHand(const Card& card) - Adiciona uma carta à mão do jogador.
+void removeFromHand(const Card& card) - Remove uma carta da mão do jogador.
+void clearHand() - Limpa a mão do jogador.
+std::vector<Card> playCards() - Faz o jogador jogar as cartas da mão.
+bool hasCards() const - Verifica se o jogador ainda tem cartas na mão.
+
+
+
+
+
+
+
+Lista da Classe pokerChines
+Atributos:
+
+std::vector<Player> players - Vetor que armazena os jogadores.
+Deck deck - Baralho de cartas.
+GameRound currentGameRound - Rodada atual do jogo.
+int currentRoundStarter - Índice do jogador que começa a rodada.
+int winnerIndex - Índice do jogador vencedor da rodada.
+int currentRound - Número da rodada atual.
+std::vector<int> scores - Vetor que armazena as pontuações dos jogadores.
+Métodos:
+
+pokerChines(const std::vector<std::string>& playerNames) - Construtor que inicializa o jogo com os nomes dos jogadores.
+void playGame() - Inicia o jogo.
+void dealCards() - Distribui as cartas para os jogadores.
+void determineRoundStarter() - Determina quem começa a rodada.
+void determineHandOfRound() - Determina a "mão da rodada".
+void playRound() - Joga uma rodada.
+bool isValidMove(const std::vector<Card>& cards) - Verifica se uma jogada é válida.
+bool promptEndGame() - Pergunta se o jogo deve terminar.
+void displayScores() - Exibe as pontuações dos jogadores.
